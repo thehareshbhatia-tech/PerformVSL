@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAT Accelerator | Score 1500+ in 16 Weeks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #ffffff;
+      --bg-secondary: #fafafa;
+      --bg-tertiary: #f5f5f7;
+      --bg-card: #ffffff;
+      --text-primary: #1d1d1f;
+      --text-secondary: #6e6e73;
+      --text-tertiary: #86868b;
+      --accent-start: #ff6b35;
+      --accent-mid: #f7931e;
+      --accent-end: #ff4444;
+      --gradient-accent: linear-gradient(135deg, var(--accent-start) 0%, var(--accent-mid) 50%, var(--accent-end) 100%);
+      --border-subtle: rgba(0, 0, 0, 0.08);
+      --border-medium: rgba(0, 0, 0, 0.12);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 0 24px;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--text-primary);
+      color: var(--bg-primary);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      padding: 9px 18px;
+      border-radius: 980px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .nav-cta:hover {
+      background: #000;
+      transform: scale(1.02);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      background: var(--bg-primary);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-mid);
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .hero-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(1.75rem, 5vw, 3.25rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      color: var(--text-primary);
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.1s forwards;
+    }
+
+    .hero-title .line { display: block; }
+
+    .hero-title .gradient-text {
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin: 0 auto 40px;
+      letter-spacing: -0.01em;
+      line-height: 1.6;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.2s forwards;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Video Section */
+    .video-wrapper {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.3s forwards;
+    }
+
+    .video-container {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--bg-tertiary);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .video-aspect {
+      position: relative;
+      padding-bottom: 56.25%;
+    }
+
+    .video-aspect iframe,
+    .video-aspect video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, var(--bg-tertiary) 0%, #eaeaec 100%);
+      cursor: pointer;
+      transition: all 0.4s ease;
+    }
+
+    .video-placeholder:hover .play-btn {
+      transform: scale(1.08);
+    }
+
+    .play-btn {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      background: var(--gradient-accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+      box-shadow: 0 12px 32px rgba(247, 147, 30, 0.35);
+    }
+
+    .play-btn svg {
+      width: 28px;
+      height: 28px;
+      fill: white;
+      margin-left: 3px;
+    }
+
+    .play-label {
+      margin-top: 18px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      letter-spacing: 0.01em;
+    }
+
+    /* Stats Section */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border-subtle);
+      margin-top: 80px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.5s forwards;
+    }
+
+    .stat {
+      background: var(--bg-primary);
+      padding: 36px 24px;
+      text-align: center;
+      transition: background 0.3s ease;
+    }
+
+    .stat:hover { background: var(--bg-secondary); }
+
+    .stat-value {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 2.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 0.8125rem;
+      color: var(--text-tertiary);
+      font-weight: 500;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 120px 24px;
+      text-align: center;
+      background: var(--bg-secondary);
+    }
+
+    .cta-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cta-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(1.875rem, 4vw, 2.75rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+    }
+
+    .cta-desc {
+      font-size: 1.0625rem;
+      color: var(--text-secondary);
+      margin-bottom: 36px;
+      line-height: 1.6;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--gradient-accent);
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 16px 32px;
+      border-radius: 980px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 12px 32px -8px rgba(247, 147, 30, 0.4);
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px -8px rgba(247, 147, 30, 0.5);
+    }
+
+    .cta-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+      transition: transform 0.3s ease;
+    }
+
+    .cta-btn:hover svg { transform: translateX(4px); }
+
+    .cta-note {
+      margin-top: 20px;
+      font-size: 0.8125rem;
+      color: var(--text-tertiary);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-primary);
+      border-top: 1px solid var(--border-subtle);
+      padding: 32px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-brand {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      font-size: 0.875rem;
+    }
+
+    .footer-links { display: flex; gap: 28px; }
+
+    .footer-links a {
+      color: var(--text-tertiary);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover { color: var(--text-primary); }
+
+    /* Mobile Sticky CTA */
+    .sticky-cta {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-top: 1px solid var(--border-subtle);
+      z-index: 100;
+    }
+
+    .sticky-cta a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--gradient-accent);
+      color: white;
+      font-weight: 600;
+      padding: 14px 24px;
+      border-radius: 980px;
+      text-decoration: none;
+      width: 100%;
+      font-size: 0.9375rem;
+    }
+
+    /* ===================== */
+    /* LEAD CAPTURE MODAL    */
+    /* ===================== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--bg-primary);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 520px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.2);
+      position: relative;
+      animation: fadeInUp 0.35s ease;
+    }
+
+    .modal-header {
+      padding: 32px 32px 0;
+      text-align: center;
+    }
+
+    .modal-header .badge {
+      display: inline-block;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-mid);
+      margin-bottom: 12px;
+    }
+
+    .modal-header h2 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .modal-header p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: var(--bg-tertiary);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-tertiary);
+      font-size: 1.25rem;
+      line-height: 1;
+      transition: all 0.2s ease;
+    }
+
+    .modal-close:hover {
+      background: var(--border-medium);
+      color: var(--text-primary);
+    }
+
+    .modal-body {
+      padding: 24px 32px 32px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 5px;
+    }
+
+    .form-group label .req {
+      color: var(--accent-end);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      color: var(--text-primary);
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      outline: none;
+      transition: all 0.2s ease;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%2386868b' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--accent-mid);
+      box-shadow: 0 0 0 3px rgba(247, 147, 30, 0.1);
+    }
+
+    .form-group input::placeholder {
+      color: var(--text-tertiary);
+    }
+
+    .conditional-score {
+      display: none;
+      margin-top: 8px;
+    }
+
+    .conditional-score.visible {
+      display: block;
+    }
+
+    .form-submit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 14px 24px;
+      background: var(--gradient-accent);
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 980px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 12px 32px -8px rgba(247, 147, 30, 0.4);
+      margin-top: 8px;
+    }
+
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px -8px rgba(247, 147, 30, 0.5);
+    }
+
+    .form-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .form-submit svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    .form-note {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+    }
+
+    .form-error {
+      color: var(--accent-end);
+      font-size: 0.75rem;
+      margin-top: 8px;
+      text-align: center;
+      display: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        padding: 100px 20px 60px;
+        min-height: auto;
+      }
+
+      .hero-title { font-size: 1.5rem; }
+      .hero-subtitle { font-size: 0.9375rem; }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+        margin-top: 60px;
+      }
+
+      .stat { padding: 28px 16px; }
+      .stat-value { font-size: 1.875rem; }
+      .cta-section { padding: 80px 20px; }
+
+      .footer-inner {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+      }
+
+      .sticky-cta { display: block; }
+      footer { padding-bottom: 90px; }
+      .nav-cta { padding: 8px 14px; font-size: 0.75rem; }
+
+      .modal-header { padding: 24px 20px 0; }
+      .modal-body { padding: 20px 20px 24px; }
+      .modal-header h2 { font-size: 1.25rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title { font-size: 1.375rem; }
+      .stats { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* Scroll animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <div class="logo">SAT Accelerator</div>
+      <a href="#book" class="nav-cta">
+        Book Assessment
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-badge">FOR STUDENTS AIMING FOR TOP 20 UNIVERSITIES</div>
+        <h1 class="hero-title">
+          <span class="line">How students score <span class="gradient-text">1500+</span> and earn</span>
+          <span class="line"><span class="gradient-text">massive scholarships</span> with the</span>
+          <span class="line">16-Week SAT Accelerator Program.</span>
+        </h1>
+        <p class="hero-subtitle">Watch the video below to see exactly how we help students hit their target score and unlock T20 admissions.</p>
+
+        <div class="video-wrapper">
+          <div class="video-container">
+            <div class="video-aspect">
+              <div class="video-placeholder" id="videoPlaceholder">
+                <div class="play-btn">
+                  <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="play-label">Watch the video</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-value">1600</div>
+            <div class="stat-label">Perfect SAT Score</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">200+</div>
+            <div class="stat-label">Avg. Point Increase</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">$300K+</div>
+            <div class="stat-label">In Scholarships</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">16</div>
+            <div class="stat-label">Week Program</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section" id="book">
+      <div class="cta-inner reveal">
+        <h2 class="cta-title">Your path to 1500+ starts here</h2>
+        <p class="cta-desc">Book a complimentary SAT Performance Assessment. We'll analyze your current score, identify exactly what's holding you back, and show you the roadmap to T20 admissions.</p>
+        <!-- ⚠️ REPLACE #BOOKING_LINK with your actual booking URL -->
+        <a href="#BOOKING_LINK" class="cta-btn">
+          Schedule Your Assessment
+          <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+        </a>
+        <p class="cta-note">Limited availability · First come, first served</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">SAT Accelerator · Long Island, NY</div>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="sticky-cta">
+    <!-- ⚠️ REPLACE #BOOKING_LINK with your actual booking URL -->
+    <a href="#BOOKING_LINK">
+      Book Your Free Assessment
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+    </a>
+  </div>
+
+  <!-- ===================== -->
+  <!-- LEAD CAPTURE MODAL    -->
+  <!-- ===================== -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <div class="modal-header">
+        <div class="badge">Free Access</div>
+        <h2>Watch how students hit 1500+</h2>
+        <p>Enter your details below to unlock the full video.</p>
+      </div>
+      <div class="modal-body">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name <span class="req">*</span></label>
+            <input type="text" id="parentName" placeholder="Full name">
+          </div>
+          <div class="form-group">
+            <label>Email <span class="req">*</span></label>
+            <input type="email" id="parentEmail" placeholder="you@email.com">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone Number <span class="req">*</span></label>
+            <input type="tel" id="parentPhone" placeholder="(555) 123-4567">
+          </div>
+          <div class="form-group">
+            <label>Child's Name <span class="req">*</span></label>
+            <input type="text" id="childName" placeholder="Child's full name">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Child's Grade Level <span class="req">*</span></label>
+            <select id="gradeLevel">
+              <option value="" disabled selected>Select grade</option>
+              <option value="8th">8th Grade</option>
+              <option value="9th">9th Grade (Freshman)</option>
+              <option value="10th">10th Grade (Sophomore)</option>
+              <option value="11th">11th Grade (Junior)</option>
+              <option value="12th">12th Grade (Senior)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Child's High School</label>
+            <input type="text" id="highSchool" placeholder="School name">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Taken the SAT before?</label>
+            <select id="satTaken">
+              <option value="" disabled selected>Select</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+              <option value="unknown">Don't know</option>
+            </select>
+            <div class="conditional-score" id="satScoreWrap">
+              <input type="number" id="satScore" placeholder="Current SAT score (400–1600)" min="400" max="1600">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Taken the PSAT before?</label>
+            <select id="psatTaken">
+              <option value="" disabled selected>Select</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+              <option value="unknown">Don't know</option>
+            </select>
+            <div class="conditional-score" id="psatScoreWrap">
+              <input type="number" id="psatScore" placeholder="Current PSAT score (320–1520)" min="320" max="1520">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Target SAT Score</label>
+            <select id="targetScore">
+              <option value="" disabled selected>Select target</option>
+              <option value="1400+">1400+</option>
+              <option value="1450+">1450+</option>
+              <option value="1500+">1500+</option>
+              <option value="1550+">1550+</option>
+              <option value="1600">1600 (Perfect)</option>
+              <option value="not_sure">Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Target Universities</label>
+            <input type="text" id="targetUnis" placeholder="e.g. MIT, Stanford, NYU">
+          </div>
+        </div>
+
+        <button class="form-submit" id="formSubmit">
+          Unlock the Video
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <p class="form-note">Your information is kept private and never shared.</p>
+        <p class="form-error" id="formError">Please fill in all required fields.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ================================================
+       ⚠️  CONFIG — Replace these before going live
+       ================================================ */
+    const GHL_WEBHOOK_URL = 'YOUR_GHL_WEBHOOK_URL';  // Your GoHighLevel Inbound Webhook URL
+
+
+    /* ---- Conditional score fields ---- */
+    document.getElementById('satTaken').addEventListener('change', function() {
+      const wrap = document.getElementById('satScoreWrap');
+      if (this.value === 'yes') { wrap.classList.add('visible'); }
+      else { wrap.classList.remove('visible'); document.getElementById('satScore').value = ''; }
+    });
+
+    document.getElementById('psatTaken').addEventListener('change', function() {
+      const wrap = document.getElementById('psatScoreWrap');
+      if (this.value === 'yes') { wrap.classList.add('visible'); }
+      else { wrap.classList.remove('visible'); document.getElementById('psatScore').value = ''; }
+    });
+
+
+    /* ---- Modal open / close ---- */
+    const videoPlaceholder = document.getElementById('videoPlaceholder');
+    const modalOverlay = document.getElementById('modalOverlay');
+
+    videoPlaceholder.addEventListener('click', () => {
+      modalOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) closeModal();
+    });
+
+    function closeModal() {
+      modalOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+
+    /* ---- Form submission ---- */
+    document.getElementById('formSubmit').addEventListener('click', function() {
+      const get = id => document.getElementById(id);
+      const val = id => (get(id).value || '').trim();
+      const errorEl = get('formError');
+
+      // Required fields
+      if (!val('parentName') || !val('parentEmail') || !val('parentPhone') || !val('childName') || !val('gradeLevel')) {
+        errorEl.textContent = 'Please fill in all required fields.';
+        errorEl.style.display = 'block';
+        return;
+      }
+
+      // Email check
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val('parentEmail'))) {
+        errorEl.textContent = 'Please enter a valid email address.';
+        errorEl.style.display = 'block';
+        return;
+      }
+
+      errorEl.style.display = 'none';
+      this.disabled = true;
+      this.innerHTML = 'Unlocking...';
+
+      // Build payload
+      const payload = {
+        parent_name: val('parentName'),
+        email: val('parentEmail'),
+        phone: val('parentPhone'),
+        child_name: val('childName'),
+        grade_level: val('gradeLevel'),
+        high_school: val('highSchool'),
+        sat_taken: val('satTaken'),
+        sat_score: val('satScore'),
+        psat_taken: val('psatTaken'),
+        psat_score: val('psatScore'),
+        target_score: val('targetScore'),
+        target_universities: val('targetUnis'),
+        source: 'VSL Landing Page',
+        submitted_at: new Date().toISOString()
+      };
+
+      // Send to GHL
+      if (GHL_WEBHOOK_URL && GHL_WEBHOOK_URL !== 'YOUR_GHL_WEBHOOK_URL') {
+        fetch(GHL_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }).catch(err => console.warn('Webhook error:', err));
+      } else {
+        console.log('📋 Form data (webhook not configured yet):', payload);
+      }
+
+      // Close modal & play video
+      closeModal();
+      const vp = document.getElementById('videoPlaceholder');
+      if (vp) {
+        vp.outerHTML = '<iframe src="https://www.youtube.com/embed/la0lIprE52Q?autoplay=1&rel=0" allow="autoplay; fullscreen; encrypted-media" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"></iframe>';
+      }
+    });
+
+
+    /* ---- Scroll reveal ---- */
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
