@@ -175,7 +175,7 @@
       position: relative;
       border-radius: 16px;
       overflow: hidden;
-      background: var(--bg-tertiary);
+      background: #000;
       box-shadow: var(--shadow-lg);
       border: 1px solid var(--border-subtle);
     }
@@ -185,7 +185,17 @@
       padding-bottom: 56.25%;
     }
 
-    /* Custom play overlay (shown before form) */
+    /* Wistia thumbnail background — always visible */
+    .video-thumbnail {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://fast.wistia.com/embed/medias/jfu4kwqcye/swatch');
+      background-size: cover;
+      background-position: center;
+      z-index: 1;
+    }
+
+    /* Play overlay on top of thumbnail */
     .video-overlay {
       position: absolute;
       inset: 0;
@@ -193,14 +203,14 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(180deg, var(--bg-tertiary) 0%, #eaeaec 100%);
+      background: rgba(0, 0, 0, 0.3);
       cursor: pointer;
-      z-index: 5;
-      transition: all 0.4s ease;
+      z-index: 3;
+      transition: background 0.3s ease;
     }
 
+    .video-overlay:hover { background: rgba(0, 0, 0, 0.2); }
     .video-overlay:hover .play-btn { transform: scale(1.08); }
-
     .video-overlay.hidden { display: none; }
 
     .play-btn {
@@ -226,13 +236,16 @@
       margin-top: 18px;
       font-size: 0.875rem;
       font-weight: 500;
-      color: var(--text-tertiary);
+      color: rgba(255, 255, 255, 0.9);
+      text-shadow: 0 1px 4px rgba(0,0,0,0.3);
     }
 
-    /* Wistia embed container */
+    /* Wistia embed (hidden until form submitted) */
     .wistia-player {
       position: absolute;
       inset: 0;
+      z-index: 2;
+      display: none;
     }
 
     .wistia_embed {
@@ -427,7 +440,7 @@
       background: var(--bg-primary);
       border-radius: 20px;
       width: 100%;
-      max-width: 520px;
+      max-width: 480px;
       max-height: 90vh;
       overflow-y: auto;
       box-shadow: 0 32px 80px rgba(0, 0, 0, 0.2);
@@ -491,13 +504,7 @@
 
     .modal-body { padding: 24px 32px 32px; }
 
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .form-group { margin-bottom: 14px; }
+    .form-group { margin-bottom: 16px; }
 
     .form-group label {
       display: block;
@@ -512,9 +519,9 @@
     .form-group input,
     .form-group select {
       width: 100%;
-      padding: 10px 14px;
+      padding: 12px 14px;
       font-family: 'Inter', sans-serif;
-      font-size: 0.875rem;
+      font-size: 0.9375rem;
       color: var(--text-primary);
       background: var(--bg-tertiary);
       border: 1px solid var(--border-subtle);
@@ -540,13 +547,6 @@
 
     .form-group input::placeholder { color: var(--text-tertiary); }
 
-    .conditional-score {
-      display: none;
-      margin-top: 8px;
-    }
-
-    .conditional-score.visible { display: block; }
-
     .form-submit {
       display: flex;
       align-items: center;
@@ -564,7 +564,7 @@
       cursor: pointer;
       transition: all 0.3s ease;
       box-shadow: 0 12px 32px -8px rgba(247, 147, 30, 0.4);
-      margin-top: 8px;
+      margin-top: 4px;
     }
 
     .form-submit:hover {
@@ -615,7 +615,6 @@
       .modal-header { padding: 24px 20px 0; }
       .modal-body { padding: 20px 20px 24px; }
       .modal-header h2 { font-size: 1.25rem; }
-      .form-row { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 480px) {
@@ -661,15 +660,17 @@
         <div class="video-wrapper">
           <div class="video-container">
             <div class="video-aspect">
-              <!-- Play overlay — triggers form -->
+              <!-- Wistia thumbnail — always visible -->
+              <div class="video-thumbnail" id="videoThumb"></div>
+              <!-- Play overlay on top of thumbnail -->
               <div class="video-overlay" id="videoOverlay">
                 <div class="play-btn">
                   <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </div>
                 <span class="play-label">Watch the video</span>
               </div>
-              <!-- Wistia player (hidden until form submitted) -->
-              <div class="wistia-player" id="wistiaPlayer" style="display:none;">
+              <!-- Wistia player (shown after form) -->
+              <div class="wistia-player" id="wistiaPlayer">
                 <div class="wistia_embed wistia_async_jfu4kwqcye videoFoam=true" style="width:100%;height:100%;"></div>
               </div>
             </div>
@@ -741,90 +742,31 @@
       </div>
       <div class="modal-body">
 
-        <div class="form-row">
-          <div class="form-group">
-            <label>Your Name <span class="req">*</span></label>
-            <input type="text" id="parentName" placeholder="Full name">
-          </div>
-          <div class="form-group">
-            <label>Email <span class="req">*</span></label>
-            <input type="email" id="parentEmail" placeholder="you@email.com">
-          </div>
+        <div class="form-group">
+          <label>Your Name <span class="req">*</span></label>
+          <input type="text" id="parentName" placeholder="Full name">
         </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label>Phone Number <span class="req">*</span></label>
-            <input type="tel" id="parentPhone" placeholder="(555) 123-4567">
-          </div>
-          <div class="form-group">
-            <label>Child's Name <span class="req">*</span></label>
-            <input type="text" id="childName" placeholder="Child's full name">
-          </div>
+        <div class="form-group">
+          <label>Email <span class="req">*</span></label>
+          <input type="email" id="parentEmail" placeholder="you@email.com">
         </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label>Child's Grade Level <span class="req">*</span></label>
-            <select id="gradeLevel">
-              <option value="" disabled selected>Select grade</option>
-              <option value="8th">8th Grade</option>
-              <option value="9th">9th Grade (Freshman)</option>
-              <option value="10th">10th Grade (Sophomore)</option>
-              <option value="11th">11th Grade (Junior)</option>
-              <option value="12th">12th Grade (Senior)</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Child's High School</label>
-            <input type="text" id="highSchool" placeholder="School name">
-          </div>
+        <div class="form-group">
+          <label>Phone Number <span class="req">*</span></label>
+          <input type="tel" id="parentPhone" placeholder="(555) 123-4567">
         </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label>Taken the SAT before?</label>
-            <select id="satTaken">
-              <option value="" disabled selected>Select</option>
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-              <option value="unknown">Don't know</option>
-            </select>
-            <div class="conditional-score" id="satScoreWrap">
-              <input type="number" id="satScore" placeholder="Current SAT score (400–1600)" min="400" max="1600">
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Taken the PSAT before?</label>
-            <select id="psatTaken">
-              <option value="" disabled selected>Select</option>
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-              <option value="unknown">Don't know</option>
-            </select>
-            <div class="conditional-score" id="psatScoreWrap">
-              <input type="number" id="psatScore" placeholder="Current PSAT score (320–1520)" min="320" max="1520">
-            </div>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>Target SAT Score</label>
-            <select id="targetScore">
-              <option value="" disabled selected>Select target</option>
-              <option value="1400+">1400+</option>
-              <option value="1450+">1450+</option>
-              <option value="1500+">1500+</option>
-              <option value="1550+">1550+</option>
-              <option value="1600">1600 (Perfect)</option>
-              <option value="not_sure">Not sure yet</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Target Universities</label>
-            <input type="text" id="targetUnis" placeholder="e.g. MIT, Stanford, NYU">
-          </div>
+        <div class="form-group">
+          <label>Child's Grade Level <span class="req">*</span></label>
+          <select id="gradeLevel">
+            <option value="" disabled selected>Select grade</option>
+            <option value="8th">8th Grade</option>
+            <option value="9th">9th Grade (Freshman)</option>
+            <option value="10th">10th Grade (Sophomore)</option>
+            <option value="11th">11th Grade (Junior)</option>
+            <option value="12th">12th Grade (Senior)</option>
+          </select>
         </div>
 
         <button class="form-submit" id="formSubmit">
@@ -844,16 +786,18 @@
     const GHL_WEBHOOK_URL = 'YOUR_GHL_WEBHOOK_URL';
 
 
-    /* ---- Conditional score fields ---- */
-    document.getElementById('satTaken').addEventListener('change', function() {
-      const w = document.getElementById('satScoreWrap');
-      this.value === 'yes' ? w.classList.add('visible') : (w.classList.remove('visible'), document.getElementById('satScore').value = '');
-    });
-
-    document.getElementById('psatTaken').addEventListener('change', function() {
-      const w = document.getElementById('psatScoreWrap');
-      this.value === 'yes' ? w.classList.add('visible') : (w.classList.remove('visible'), document.getElementById('psatScore').value = '');
-    });
+    /* ---- Load Wistia thumbnail ---- */
+    // Fetch the actual thumbnail from Wistia's oEmbed API
+    fetch('https://fast.wistia.com/oembed?url=https://haresh.wistia.com/medias/jfu4kwqcye&format=json')
+      .then(r => r.json())
+      .then(data => {
+        if (data.thumbnail_url) {
+          // Get high-res version
+          const hiRes = data.thumbnail_url.replace(/\?.*$/, '') + '?image_crop_resized=1920x1080';
+          document.getElementById('videoThumb').style.backgroundImage = 'url(' + hiRes + ')';
+        }
+      })
+      .catch(() => {});
 
 
     /* ---- Modal open / close ---- */
@@ -882,7 +826,7 @@
       const errorEl = document.getElementById('formError');
 
       // Required fields
-      if (!val('parentName') || !val('parentEmail') || !val('parentPhone') || !val('childName') || !val('gradeLevel')) {
+      if (!val('parentName') || !val('parentEmail') || !val('parentPhone') || !val('gradeLevel')) {
         errorEl.textContent = 'Please fill in all required fields.';
         errorEl.style.display = 'block';
         return;
@@ -900,18 +844,10 @@
       this.innerHTML = 'Unlocking...';
 
       const payload = {
-        parent_name: val('parentName'),
+        name: val('parentName'),
         email: val('parentEmail'),
         phone: val('parentPhone'),
-        child_name: val('childName'),
         grade_level: val('gradeLevel'),
-        high_school: val('highSchool'),
-        sat_taken: val('satTaken'),
-        sat_score: val('satScore'),
-        psat_taken: val('psatTaken'),
-        psat_score: val('psatScore'),
-        target_score: val('targetScore'),
-        target_universities: val('targetUnis'),
         source: 'VSL Landing Page',
         submitted_at: new Date().toISOString()
       };
@@ -932,7 +868,7 @@
       videoOverlay.classList.add('hidden');
       document.getElementById('wistiaPlayer').style.display = 'block';
 
-      // Auto-play the Wistia video
+      // Auto-play
       window._wq = window._wq || [];
       _wq.push({ id: 'jfu4kwqcye', onReady: function(video) {
         video.play();
