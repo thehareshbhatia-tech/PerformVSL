@@ -24,7 +24,6 @@
   src="https://www.facebook.com/tr?id=1063810436814222&ev=PageView&noscript=1"
   /></noscript>
   <!-- End Meta Pixel Code -->
-  <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
   <style>
     :root {
       --bg-primary: #ffffff;
@@ -39,8 +38,6 @@
       --gradient-accent: linear-gradient(135deg, var(--accent-start) 0%, var(--accent-mid) 50%, var(--accent-end) 100%);
       --border-subtle: rgba(0, 0, 0, 0.08);
       --border-medium: rgba(0, 0, 0, 0.12);
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-      --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
       --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
     }
 
@@ -58,13 +55,6 @@
       color: var(--text-primary);
       line-height: 1.5;
       overflow-x: hidden;
-    }
-
-    .container {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 24px;
-      position: relative;
     }
 
     /* Navigation */
@@ -87,7 +77,7 @@
       height: 56px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
     }
 
     .logo {
@@ -96,25 +86,6 @@
       font-weight: 600;
       color: var(--text-primary);
       letter-spacing: -0.02em;
-    }
-
-    .nav-cta {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--text-primary);
-      color: var(--bg-primary);
-      font-size: 0.8125rem;
-      font-weight: 600;
-      padding: 9px 18px;
-      border-radius: 980px;
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
-
-    .nav-cta:hover {
-      background: #000;
-      transform: scale(1.02);
     }
 
     /* Hero */
@@ -126,7 +97,12 @@
       align-items: center;
       text-align: center;
       padding: 120px 24px 80px;
-      background: var(--bg-primary);
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
     }
 
     .hero-badge {
@@ -179,11 +155,11 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Video */
+    /* Video Thumbnail */
     .video-wrapper {
       width: 100%;
       max-width: 900px;
-      margin: 0 auto;
+      margin: 0 auto 48px;
       opacity: 0;
       animation: fadeInUp 0.8s ease 0.3s forwards;
     }
@@ -202,17 +178,13 @@
       padding-bottom: 56.25%;
     }
 
-    /* Wistia thumbnail background — always visible */
     .video-thumbnail {
       position: absolute;
       inset: 0;
-      background-image: url('https://fast.wistia.com/embed/medias/jfu4kwqcye/swatch');
       background-size: cover;
       background-position: center;
-      z-index: 1;
     }
 
-    /* Play overlay on top of thumbnail */
     .video-overlay {
       position: absolute;
       inset: 0;
@@ -222,13 +194,11 @@
       justify-content: center;
       background: rgba(0, 0, 0, 0.3);
       cursor: pointer;
-      z-index: 3;
       transition: background 0.3s ease;
     }
 
     .video-overlay:hover { background: rgba(0, 0, 0, 0.2); }
     .video-overlay:hover .play-btn { transform: scale(1.08); }
-    .video-overlay.hidden { display: none; }
 
     .play-btn {
       width: 80px;
@@ -257,271 +227,50 @@
       text-shadow: 0 1px 4px rgba(0,0,0,0.3);
     }
 
-    /* Wistia embed (hidden until form submitted) */
-    .wistia-player {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      display: none;
-    }
-
-    .wistia_embed {
-      width: 100%;
-      height: 100%;
-    }
-
-    /* Stats */
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--border-subtle);
-      margin-top: 80px;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--border-subtle);
-      opacity: 0;
-      animation: fadeInUp 0.8s ease 0.5s forwards;
-    }
-
-    .stat {
-      background: var(--bg-primary);
-      padding: 36px 24px;
-      text-align: center;
-      transition: background 0.3s ease;
-    }
-
-    .stat:hover { background: var(--bg-secondary); }
-
-    .stat-value {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 2.25rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      background: var(--gradient-accent);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-
-    .stat-label {
-      font-size: 0.8125rem;
-      color: var(--text-tertiary);
-      font-weight: 500;
-    }
-
-    /* CTA */
-    .cta-section {
-      padding: 120px 24px;
-      text-align: center;
-      background: var(--bg-secondary);
-    }
-
-    .cta-inner { max-width: 600px; margin: 0 auto; }
-
-    .cta-title {
-      font-family: 'DM Sans', sans-serif;
-      font-size: clamp(1.875rem, 4vw, 2.75rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 16px;
-      color: var(--text-primary);
-    }
-
-    .cta-desc {
-      font-size: 1.0625rem;
-      color: var(--text-secondary);
-      margin-bottom: 36px;
-      line-height: 1.6;
-    }
-
-    .cta-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--gradient-accent);
-      color: white;
-      font-size: 1rem;
-      font-weight: 600;
-      padding: 16px 32px;
-      border-radius: 980px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 12px 32px -8px rgba(247, 147, 30, 0.4);
-    }
-
-    .cta-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 40px -8px rgba(247, 147, 30, 0.5);
-    }
-
-    .cta-btn svg {
-      width: 18px;
-      height: 18px;
-      fill: currentColor;
-      transition: transform 0.3s ease;
-    }
-
-    .cta-btn:hover svg { transform: translateX(4px); }
-
-    .cta-note {
-      margin-top: 20px;
-      font-size: 0.8125rem;
-      color: var(--text-tertiary);
-    }
-
-    /* Footer */
-    footer {
-      background: var(--bg-primary);
-      border-top: 1px solid var(--border-subtle);
-      padding: 32px 24px;
-    }
-
-    .footer-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .footer-brand {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 500;
-      color: var(--text-tertiary);
-      font-size: 0.875rem;
-    }
-
-    .footer-links { display: flex; gap: 28px; }
-
-    .footer-links a {
-      color: var(--text-tertiary);
-      text-decoration: none;
-      font-size: 0.8125rem;
-      transition: color 0.2s ease;
-    }
-
-    .footer-links a:hover { color: var(--text-primary); }
-
-    /* Mobile Sticky CTA */
-    .sticky-cta {
-      display: none;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 12px 16px;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: saturate(180%) blur(20px);
-      -webkit-backdrop-filter: saturate(180%) blur(20px);
-      border-top: 1px solid var(--border-subtle);
-      z-index: 100;
-    }
-
-    .sticky-cta a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: var(--gradient-accent);
-      color: white;
-      font-weight: 600;
-      padding: 14px 24px;
-      border-radius: 980px;
-      text-decoration: none;
-      width: 100%;
-      font-size: 0.9375rem;
-    }
-
-    /* ===================== */
-    /* LEAD CAPTURE MODAL    */
-    /* ===================== */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 2000;
-      background: rgba(0, 0, 0, 0.55);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .modal-overlay.active { display: flex; }
-
-    .modal {
-      background: var(--bg-primary);
-      border-radius: 20px;
-      width: 100%;
+    /* Opt-in Form (inline below video) */
+    .optin-form {
       max-width: 480px;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.2);
-      position: relative;
-      animation: fadeInUp 0.35s ease;
+      margin: 0 auto;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: var(--shadow-lg);
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.4s forwards;
     }
 
-    .modal-header {
-      padding: 32px 32px 0;
+    .optin-header {
       text-align: center;
+      margin-bottom: 24px;
     }
 
-    .modal-header .badge {
+    .optin-header .badge {
       display: inline-block;
       font-size: 0.6875rem;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--accent-mid);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
-    .modal-header h2 {
+    .optin-header h2 {
       font-family: 'DM Sans', sans-serif;
-      font-size: 1.5rem;
+      font-size: 1.375rem;
       font-weight: 700;
       letter-spacing: -0.02em;
       color: var(--text-primary);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
-    .modal-header p {
+    .optin-header p {
       font-size: 0.875rem;
       color: var(--text-secondary);
       line-height: 1.5;
     }
 
-    .modal-close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      width: 32px;
-      height: 32px;
-      border: none;
-      background: var(--bg-tertiary);
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-tertiary);
-      font-size: 1.25rem;
-      line-height: 1;
-      transition: all 0.2s ease;
-    }
-
-    .modal-close:hover {
-      background: var(--border-medium);
-      color: var(--text-primary);
-    }
-
-    .modal-body { padding: 24px 32px 32px; }
-
-    .form-group { margin-bottom: 16px; }
+    .form-group { margin-bottom: 14px; }
 
     .form-group label {
       display: block;
@@ -616,38 +365,96 @@
       display: none;
     }
 
+    /* Stats */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border-subtle);
+      margin-top: 60px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.5s forwards;
+    }
+
+    .stat {
+      background: var(--bg-primary);
+      padding: 36px 24px;
+      text-align: center;
+      transition: background 0.3s ease;
+    }
+
+    .stat:hover { background: var(--bg-secondary); }
+
+    .stat-value {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 2.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 0.8125rem;
+      color: var(--text-tertiary);
+      font-weight: 500;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-primary);
+      border-top: 1px solid var(--border-subtle);
+      padding: 32px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-brand {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      font-size: 0.875rem;
+    }
+
+    .footer-links { display: flex; gap: 28px; }
+
+    .footer-links a {
+      color: var(--text-tertiary);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover { color: var(--text-primary); }
+
     /* Responsive */
     @media (max-width: 768px) {
       .hero { padding: 100px 20px 60px; min-height: auto; }
       .hero-title { font-size: 1.5rem; }
       .hero-subtitle { font-size: 0.9375rem; }
-      .stats { grid-template-columns: repeat(2, 1fr); margin-top: 60px; }
+      .stats { grid-template-columns: repeat(2, 1fr); margin-top: 40px; }
       .stat { padding: 28px 16px; }
       .stat-value { font-size: 1.875rem; }
-      .cta-section { padding: 80px 20px; }
+      .optin-form { padding: 24px 20px; }
       .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
-      .sticky-cta { display: block; }
-      footer { padding-bottom: 90px; }
-      .nav-cta { padding: 8px 14px; font-size: 0.75rem; }
-      .modal-header { padding: 24px 20px 0; }
-      .modal-body { padding: 20px 20px 24px; }
-      .modal-header h2 { font-size: 1.25rem; }
     }
 
     @media (max-width: 480px) {
       .hero-title { font-size: 1.375rem; }
       .stats { grid-template-columns: 1fr 1fr; }
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
     }
   </style>
 </head>
@@ -656,10 +463,6 @@
   <nav>
     <div class="nav-inner">
       <div class="logo">SAT Accelerator</div>
-      <a href="#book" class="nav-cta">
-        Book Assessment
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
-      </a>
     </div>
   </nav>
 
@@ -672,26 +475,64 @@
           <span class="line"><span class="gradient-text">massive scholarships</span> with the</span>
           <span class="line">16-Week SAT Accelerator Program.</span>
         </h1>
-        <p class="hero-subtitle">Watch the video below to see exactly how we help students hit their target score and unlock T20 admissions.</p>
+        <p class="hero-subtitle">Watch the free video to see exactly how we help students hit their target score and unlock T20 admissions.</p>
 
+        <!-- Video Thumbnail (not playable — just visual hook) -->
         <div class="video-wrapper">
           <div class="video-container">
             <div class="video-aspect">
-              <!-- Wistia thumbnail — always visible -->
               <div class="video-thumbnail" id="videoThumb"></div>
-              <!-- Play overlay on top of thumbnail -->
               <div class="video-overlay" id="videoOverlay">
                 <div class="play-btn">
                   <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </div>
                 <span class="play-label">Watch the video</span>
               </div>
-              <!-- Wistia player (shown after form) -->
-              <div class="wistia-player" id="wistiaPlayer">
-                <div class="wistia_embed wistia_async_jfu4kwqcye videoFoam=true" style="width:100%;height:100%;"></div>
-              </div>
             </div>
           </div>
+        </div>
+
+        <!-- Opt-in Form -->
+        <div class="optin-form" id="optinForm">
+          <div class="optin-header">
+            <div class="badge">Free Access</div>
+            <h2>Enter your details to watch</h2>
+            <p>Get instant access to the full video.</p>
+          </div>
+
+          <div class="form-group">
+            <label>Your Name <span class="req">*</span></label>
+            <input type="text" id="parentName" placeholder="Full name">
+          </div>
+
+          <div class="form-group">
+            <label>Email <span class="req">*</span></label>
+            <input type="email" id="parentEmail" placeholder="you@email.com">
+          </div>
+
+          <div class="form-group">
+            <label>Phone Number <span class="req">*</span></label>
+            <input type="tel" id="parentPhone" placeholder="(555) 123-4567">
+          </div>
+
+          <div class="form-group">
+            <label>Child's Grade Level <span class="req">*</span></label>
+            <select id="gradeLevel">
+              <option value="" disabled selected>Select grade</option>
+              <option value="8th">8th Grade</option>
+              <option value="9th">9th Grade (Freshman)</option>
+              <option value="10th">10th Grade (Sophomore)</option>
+              <option value="11th">11th Grade (Junior)</option>
+              <option value="12th">12th Grade (Senior)</option>
+            </select>
+          </div>
+
+          <button class="form-submit" id="formSubmit">
+            Watch the Free Video
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+          <p class="form-note">Your information is kept private and never shared.</p>
+          <p class="form-error" id="formError">Please fill in all required fields.</p>
         </div>
 
         <div class="stats">
@@ -714,18 +555,6 @@
         </div>
       </div>
     </section>
-
-    <section class="cta-section" id="book">
-      <div class="cta-inner reveal">
-        <h2 class="cta-title">Your path to 1500+ starts here</h2>
-        <p class="cta-desc">Book a complimentary SAT Performance Assessment. We'll analyze your current score, identify exactly what's holding you back, and show you the roadmap to T20 admissions.</p>
-        <a href="https://api.leadconnectorhq.com/widget/bookings/perform-sat-consultation" class="cta-btn">
-          Schedule Your Assessment
-          <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
-        </a>
-        <p class="cta-note">Limited availability · First come, first served</p>
-      </div>
-    </section>
   </main>
 
   <footer>
@@ -739,61 +568,6 @@
     </div>
   </footer>
 
-  <div class="sticky-cta">
-    <a href="https://api.leadconnectorhq.com/widget/bookings/perform-sat-consultation">
-      Book Your Free Assessment
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
-    </a>
-  </div>
-
-  <!-- LEAD CAPTURE MODAL -->
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal">
-      <button class="modal-close" id="modalClose">&times;</button>
-      <div class="modal-header">
-        <div class="badge">Free Access</div>
-        <h2>Watch how students hit 1500+</h2>
-        <p>Enter your details below to unlock the full video.</p>
-      </div>
-      <div class="modal-body">
-
-        <div class="form-group">
-          <label>Your Name <span class="req">*</span></label>
-          <input type="text" id="parentName" placeholder="Full name">
-        </div>
-
-        <div class="form-group">
-          <label>Email <span class="req">*</span></label>
-          <input type="email" id="parentEmail" placeholder="you@email.com">
-        </div>
-
-        <div class="form-group">
-          <label>Phone Number <span class="req">*</span></label>
-          <input type="tel" id="parentPhone" placeholder="(555) 123-4567">
-        </div>
-
-        <div class="form-group">
-          <label>Child's Grade Level <span class="req">*</span></label>
-          <select id="gradeLevel">
-            <option value="" disabled selected>Select grade</option>
-            <option value="8th">8th Grade</option>
-            <option value="9th">9th Grade (Freshman)</option>
-            <option value="10th">10th Grade (Sophomore)</option>
-            <option value="11th">11th Grade (Junior)</option>
-            <option value="12th">12th Grade (Senior)</option>
-          </select>
-        </div>
-
-        <button class="form-submit" id="formSubmit">
-          Unlock the Video
-          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        </button>
-        <p class="form-note">Your information is kept private and never shared.</p>
-        <p class="form-error" id="formError">Please fill in all required fields.</p>
-      </div>
-    </div>
-  </div>
-
   <script>
     /* ================================================
        ⚠️  CONFIG — Replace before going live
@@ -802,12 +576,10 @@
 
 
     /* ---- Load Wistia thumbnail ---- */
-    // Fetch the actual thumbnail from Wistia's oEmbed API
     fetch('https://fast.wistia.com/oembed?url=https://haresh.wistia.com/medias/jfu4kwqcye&format=json')
       .then(r => r.json())
       .then(data => {
         if (data.thumbnail_url) {
-          // Get high-res version
           const hiRes = data.thumbnail_url.replace(/\?.*$/, '') + '?image_crop_resized=1920x1080';
           document.getElementById('videoThumb').style.backgroundImage = 'url(' + hiRes + ')';
         }
@@ -815,24 +587,11 @@
       .catch(() => {});
 
 
-    /* ---- Modal open / close ---- */
-    const videoOverlay = document.getElementById('videoOverlay');
-    const modalOverlay = document.getElementById('modalOverlay');
-
-    videoOverlay.addEventListener('click', () => {
-      modalOverlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
+    /* ---- Clicking thumbnail scrolls to form ---- */
+    document.getElementById('videoOverlay').addEventListener('click', () => {
+      document.getElementById('optinForm').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      document.getElementById('parentName').focus({ preventScroll: true });
     });
-
-    document.getElementById('modalClose').addEventListener('click', closeModal);
-    modalOverlay.addEventListener('click', (e) => {
-      if (e.target === modalOverlay) closeModal();
-    });
-
-    function closeModal() {
-      modalOverlay.classList.remove('active');
-      document.body.style.overflow = '';
-    }
 
 
     /* ---- Form submission ---- */
@@ -840,14 +599,12 @@
       const val = id => (document.getElementById(id).value || '').trim();
       const errorEl = document.getElementById('formError');
 
-      // Required fields
       if (!val('parentName') || !val('parentEmail') || !val('parentPhone') || !val('gradeLevel')) {
         errorEl.textContent = 'Please fill in all required fields.';
         errorEl.style.display = 'block';
         return;
       }
 
-      // Email check
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val('parentEmail'))) {
         errorEl.textContent = 'Please enter a valid email address.';
         errorEl.style.display = 'block';
@@ -856,14 +613,14 @@
 
       errorEl.style.display = 'none';
       this.disabled = true;
-      this.innerHTML = 'Unlocking...';
+      this.innerHTML = 'Loading...';
 
       const payload = {
         name: val('parentName'),
         email: val('parentEmail'),
         phone: val('parentPhone'),
         grade_level: val('gradeLevel'),
-        source: 'VSL Landing Page',
+        source: 'VSL Opt-in Page',
         submitted_at: new Date().toISOString()
       };
 
@@ -878,27 +635,9 @@
         console.log('📋 Form data (webhook not configured yet):', payload);
       }
 
-      // Close modal, hide overlay, show & play Wistia video
-      closeModal();
-      videoOverlay.classList.add('hidden');
-      document.getElementById('wistiaPlayer').style.display = 'block';
-
-      // Auto-play
-      window._wq = window._wq || [];
-      _wq.push({ id: 'jfu4kwqcye', onReady: function(video) {
-        video.play();
-      }});
+      // Redirect to VSL page
+      window.location.href = 'vsl.html';
     });
-
-
-    /* ---- Scroll reveal ---- */
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
-    reveals.forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
