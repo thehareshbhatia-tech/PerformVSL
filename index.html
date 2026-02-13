@@ -7,12 +7,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
   <style>
     :root {
       --bg-primary: #ffffff;
       --bg-secondary: #fafafa;
       --bg-tertiary: #f5f5f7;
-      --bg-card: #ffffff;
       --text-primary: #1d1d1f;
       --text-secondary: #6e6e73;
       --text-tertiary: #86868b;
@@ -27,11 +27,7 @@
       --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     html {
       scroll-behavior: smooth;
@@ -83,9 +79,6 @@
       font-weight: 600;
       color: var(--text-primary);
       letter-spacing: -0.02em;
-      display: flex;
-      align-items: center;
-      gap: 10px;
     }
 
     .nav-cta {
@@ -107,7 +100,7 @@
       transform: scale(1.02);
     }
 
-    /* Hero Section */
+    /* Hero */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -169,7 +162,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Video Section */
+    /* Video */
     .video-wrapper {
       width: 100%;
       max-width: 900px;
@@ -192,17 +185,8 @@
       padding-bottom: 56.25%;
     }
 
-    .video-aspect iframe,
-    .video-aspect video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    .video-placeholder {
+    /* Custom play overlay (shown before form) */
+    .video-overlay {
       position: absolute;
       inset: 0;
       display: flex;
@@ -211,15 +195,15 @@
       justify-content: center;
       background: linear-gradient(180deg, var(--bg-tertiary) 0%, #eaeaec 100%);
       cursor: pointer;
+      z-index: 5;
       transition: all 0.4s ease;
     }
 
-    .video-placeholder:hover .play-btn {
-      transform: scale(1.08);
-    }
+    .video-overlay:hover .play-btn { transform: scale(1.08); }
+
+    .video-overlay.hidden { display: none; }
 
     .play-btn {
-      position: relative;
       width: 80px;
       height: 80px;
       background: var(--gradient-accent);
@@ -243,10 +227,20 @@
       font-size: 0.875rem;
       font-weight: 500;
       color: var(--text-tertiary);
-      letter-spacing: 0.01em;
     }
 
-    /* Stats Section */
+    /* Wistia embed container */
+    .wistia-player {
+      position: absolute;
+      inset: 0;
+    }
+
+    .wistia_embed {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Stats */
     .stats {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -288,17 +282,14 @@
       font-weight: 500;
     }
 
-    /* CTA Section */
+    /* CTA */
     .cta-section {
       padding: 120px 24px;
       text-align: center;
       background: var(--bg-secondary);
     }
 
-    .cta-inner {
-      max-width: 600px;
-      margin: 0 auto;
-    }
+    .cta-inner { max-width: 600px; margin: 0 auto; }
 
     .cta-title {
       font-family: 'DM Sans', sans-serif;
@@ -430,9 +421,7 @@
       padding: 20px;
     }
 
-    .modal-overlay.active {
-      display: flex;
-    }
+    .modal-overlay.active { display: flex; }
 
     .modal {
       background: var(--bg-primary);
@@ -500,9 +489,7 @@
       color: var(--text-primary);
     }
 
-    .modal-body {
-      padding: 24px 32px 32px;
-    }
+    .modal-body { padding: 24px 32px 32px; }
 
     .form-row {
       display: grid;
@@ -510,13 +497,7 @@
       gap: 12px;
     }
 
-    .form-group {
-      margin-bottom: 14px;
-    }
-
-    .form-group.full {
-      grid-column: 1 / -1;
-    }
+    .form-group { margin-bottom: 14px; }
 
     .form-group label {
       display: block;
@@ -526,13 +507,10 @@
       margin-bottom: 5px;
     }
 
-    .form-group label .req {
-      color: var(--accent-end);
-    }
+    .form-group label .req { color: var(--accent-end); }
 
     .form-group input,
-    .form-group select,
-    .form-group textarea {
+    .form-group select {
       width: 100%;
       padding: 10px 14px;
       font-family: 'Inter', sans-serif;
@@ -560,18 +538,14 @@
       box-shadow: 0 0 0 3px rgba(247, 147, 30, 0.1);
     }
 
-    .form-group input::placeholder {
-      color: var(--text-tertiary);
-    }
+    .form-group input::placeholder { color: var(--text-tertiary); }
 
     .conditional-score {
       display: none;
       margin-top: 8px;
     }
 
-    .conditional-score.visible {
-      display: block;
-    }
+    .conditional-score.visible { display: block; }
 
     .form-submit {
       display: flex;
@@ -627,33 +601,17 @@
 
     /* Responsive */
     @media (max-width: 768px) {
-      .hero {
-        padding: 100px 20px 60px;
-        min-height: auto;
-      }
-
+      .hero { padding: 100px 20px 60px; min-height: auto; }
       .hero-title { font-size: 1.5rem; }
       .hero-subtitle { font-size: 0.9375rem; }
-
-      .stats {
-        grid-template-columns: repeat(2, 1fr);
-        margin-top: 60px;
-      }
-
+      .stats { grid-template-columns: repeat(2, 1fr); margin-top: 60px; }
       .stat { padding: 28px 16px; }
       .stat-value { font-size: 1.875rem; }
       .cta-section { padding: 80px 20px; }
-
-      .footer-inner {
-        flex-direction: column;
-        gap: 20px;
-        text-align: center;
-      }
-
+      .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
       .sticky-cta { display: block; }
       footer { padding-bottom: 90px; }
       .nav-cta { padding: 8px 14px; font-size: 0.75rem; }
-
       .modal-header { padding: 24px 20px 0; }
       .modal-body { padding: 20px 20px 24px; }
       .modal-header h2 { font-size: 1.25rem; }
@@ -665,7 +623,6 @@
       .stats { grid-template-columns: 1fr 1fr; }
     }
 
-    /* Scroll animations */
     .reveal {
       opacity: 0;
       transform: translateY(30px);
@@ -704,11 +661,16 @@
         <div class="video-wrapper">
           <div class="video-container">
             <div class="video-aspect">
-              <div class="video-placeholder" id="videoPlaceholder">
+              <!-- Play overlay — triggers form -->
+              <div class="video-overlay" id="videoOverlay">
                 <div class="play-btn">
                   <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </div>
                 <span class="play-label">Watch the video</span>
+              </div>
+              <!-- Wistia player (hidden until form submitted) -->
+              <div class="wistia-player" id="wistiaPlayer" style="display:none;">
+                <div class="wistia_embed wistia_async_jfu4kwqcye videoFoam=true" style="width:100%;height:100%;"></div>
               </div>
             </div>
           </div>
@@ -768,9 +730,7 @@
     </a>
   </div>
 
-  <!-- ===================== -->
-  <!-- LEAD CAPTURE MODAL    -->
-  <!-- ===================== -->
+  <!-- LEAD CAPTURE MODAL -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal">
       <button class="modal-close" id="modalClose">&times;</button>
@@ -879,30 +839,28 @@
 
   <script>
     /* ================================================
-       ⚠️  CONFIG — Replace these before going live
+       ⚠️  CONFIG — Replace before going live
        ================================================ */
-    const GHL_WEBHOOK_URL = 'YOUR_GHL_WEBHOOK_URL';  // Your GoHighLevel Inbound Webhook URL
+    const GHL_WEBHOOK_URL = 'YOUR_GHL_WEBHOOK_URL';
 
 
     /* ---- Conditional score fields ---- */
     document.getElementById('satTaken').addEventListener('change', function() {
-      const wrap = document.getElementById('satScoreWrap');
-      if (this.value === 'yes') { wrap.classList.add('visible'); }
-      else { wrap.classList.remove('visible'); document.getElementById('satScore').value = ''; }
+      const w = document.getElementById('satScoreWrap');
+      this.value === 'yes' ? w.classList.add('visible') : (w.classList.remove('visible'), document.getElementById('satScore').value = '');
     });
 
     document.getElementById('psatTaken').addEventListener('change', function() {
-      const wrap = document.getElementById('psatScoreWrap');
-      if (this.value === 'yes') { wrap.classList.add('visible'); }
-      else { wrap.classList.remove('visible'); document.getElementById('psatScore').value = ''; }
+      const w = document.getElementById('psatScoreWrap');
+      this.value === 'yes' ? w.classList.add('visible') : (w.classList.remove('visible'), document.getElementById('psatScore').value = '');
     });
 
 
     /* ---- Modal open / close ---- */
-    const videoPlaceholder = document.getElementById('videoPlaceholder');
+    const videoOverlay = document.getElementById('videoOverlay');
     const modalOverlay = document.getElementById('modalOverlay');
 
-    videoPlaceholder.addEventListener('click', () => {
+    videoOverlay.addEventListener('click', () => {
       modalOverlay.classList.add('active');
       document.body.style.overflow = 'hidden';
     });
@@ -920,9 +878,8 @@
 
     /* ---- Form submission ---- */
     document.getElementById('formSubmit').addEventListener('click', function() {
-      const get = id => document.getElementById(id);
-      const val = id => (get(id).value || '').trim();
-      const errorEl = get('formError');
+      const val = id => (document.getElementById(id).value || '').trim();
+      const errorEl = document.getElementById('formError');
 
       // Required fields
       if (!val('parentName') || !val('parentEmail') || !val('parentPhone') || !val('childName') || !val('gradeLevel')) {
@@ -942,7 +899,6 @@
       this.disabled = true;
       this.innerHTML = 'Unlocking...';
 
-      // Build payload
       const payload = {
         parent_name: val('parentName'),
         email: val('parentEmail'),
@@ -971,12 +927,16 @@
         console.log('📋 Form data (webhook not configured yet):', payload);
       }
 
-      // Close modal & play video
+      // Close modal, hide overlay, show & play Wistia video
       closeModal();
-      const vp = document.getElementById('videoPlaceholder');
-      if (vp) {
-        vp.outerHTML = '<iframe src="https://www.youtube.com/embed/la0lIprE52Q?autoplay=1&rel=0" allow="autoplay; fullscreen; encrypted-media" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"></iframe>';
-      }
+      videoOverlay.classList.add('hidden');
+      document.getElementById('wistiaPlayer').style.display = 'block';
+
+      // Auto-play the Wistia video
+      window._wq = window._wq || [];
+      _wq.push({ id: 'jfu4kwqcye', onReady: function(video) {
+        video.play();
+      }});
     });
 
 
