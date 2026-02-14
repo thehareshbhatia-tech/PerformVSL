@@ -617,7 +617,7 @@
     /* ================================================
        ⚠️  CONFIG — Replace before going live
        ================================================ */
-    const GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/BhlKsKvPvne7FRm5vT8R/webhook-trigger/46a7061a-4d1b-44dd-b159-d9fdfbd5b103';
+    const GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/BhlKsKvPvne7FRm5vT8R/webhook-trigger/4a82b737-e180-4793-91e8-d337e1468ae1';
 
     /* ---- Load custom thumbnail ---- */
     document.getElementById('videoThumb').style.backgroundImage = 'url(New_Thumbnail-thumbnail.jpg)';
@@ -669,19 +669,21 @@
         submitted_at: new Date().toISOString()
       };
 
-      // Send to GHL
+      // Send to GHL then redirect
       if (GHL_WEBHOOK_URL && GHL_WEBHOOK_URL !== 'YOUR_GHL_WEBHOOK_URL') {
+        const formData = new URLSearchParams(payload);
         fetch(GHL_WEBHOOK_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        }).catch(err => console.warn('Webhook error:', err));
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: formData.toString()
+        })
+        .then(() => { window.location.href = 'vsl.html'; })
+        .catch(() => { window.location.href = 'vsl.html'; });
       } else {
         console.log('📋 Form data (webhook not configured yet):', payload);
+        window.location.href = 'vsl.html';
       }
-
-      // Redirect to VSL page
-      window.location.href = 'vsl.html';
     });
   </script>
 </body>
