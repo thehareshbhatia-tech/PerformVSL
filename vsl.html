@@ -109,7 +109,7 @@
       transform: scale(1.02);
     }
 
-    /* Hero */
+    /* Hero — Video */
     .hero {
       display: flex;
       flex-direction: column;
@@ -125,49 +125,16 @@
       padding: 0 24px;
     }
 
-    .hero-badge {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent-mid);
-      margin-bottom: 24px;
-      opacity: 0;
-      animation: fadeInUp 0.8s ease forwards;
-    }
-
-    .hero-title {
-      font-family: 'DM Sans', sans-serif;
-      font-size: clamp(1.75rem, 5vw, 3.25rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-      margin-bottom: 20px;
-      color: var(--text-primary);
-      opacity: 0;
-      animation: fadeInUp 0.8s ease 0.1s forwards;
-    }
-
-    .hero-title .line { display: block; }
-
-    .hero-title .gradient-text {
-      background: var(--gradient-accent);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
     .hero-subtitle {
       font-size: 1rem;
       font-weight: 400;
       color: var(--text-secondary);
       max-width: 520px;
-      margin: 0 auto 40px;
+      margin: 0 auto 32px;
       letter-spacing: -0.01em;
       line-height: 1.6;
       opacity: 0;
-      animation: fadeInUp 0.8s ease 0.2s forwards;
+      animation: fadeInUp 0.8s ease 0.1s forwards;
     }
 
     @keyframes fadeInUp {
@@ -175,13 +142,12 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Video */
     .video-wrapper {
       width: 100%;
       max-width: 900px;
       margin: 0 auto;
       opacity: 0;
-      animation: fadeInUp 0.8s ease 0.3s forwards;
+      animation: fadeInUp 0.8s ease 0.2s forwards;
     }
 
     .video-container {
@@ -206,11 +172,14 @@
       height: 100%;
     }
 
-    /* Booking Calendar Section */
+    /* ======================== */
+    /* PREMIUM BOOKING CALENDAR */
+    /* ======================== */
     .booking-section {
-      padding: 80px 24px 100px;
+      padding: 80px 24px 40px;
       text-align: center;
-      background: var(--bg-secondary);
+      background: var(--bg-primary);
+      position: relative;
     }
 
     .booking-inner {
@@ -218,52 +187,193 @@
       margin: 0 auto;
     }
 
-    .booking-title {
+    .booking-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, rgba(255, 107, 53, 0.08) 0%, rgba(247, 147, 30, 0.08) 100%);
+      border: 1px solid rgba(247, 147, 30, 0.15);
+      border-radius: 980px;
+      padding: 8px 18px;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.3s forwards;
+    }
+
+    .booking-label-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent-mid);
+      border-radius: 50%;
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(247, 147, 30, 0.4); }
+      50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(247, 147, 30, 0); }
+    }
+
+    .booking-label-text {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent-mid);
+    }
+
+    .booking-heading {
       font-family: 'DM Sans', sans-serif;
-      font-size: clamp(1.875rem, 4vw, 2.75rem);
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
       font-weight: 700;
       letter-spacing: -0.02em;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
       color: var(--text-primary);
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.4s forwards;
+    }
+
+    .booking-subheading {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      line-height: 1.5;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.45s forwards;
+    }
+
+    .calendar-card {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--bg-primary);
       opacity: 0;
       animation: fadeInUp 0.8s ease 0.5s forwards;
     }
 
-    .booking-desc {
-      font-size: 1.0625rem;
-      color: var(--text-secondary);
-      margin-bottom: 40px;
-      line-height: 1.6;
-      max-width: 560px;
-      margin-left: auto;
-      margin-right: auto;
-      opacity: 0;
-      animation: fadeInUp 0.8s ease 0.6s forwards;
+    /* Gradient border effect */
+    .calendar-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      padding: 2px;
+      background: var(--gradient-accent);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
     }
 
-    .booking-calendar {
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-lg);
+    /* Subtle glow behind the card */
+    .calendar-card::after {
+      content: '';
+      position: absolute;
+      inset: -20px;
+      background: radial-gradient(ellipse at center, rgba(247, 147, 30, 0.06) 0%, transparent 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .calendar-card-inner {
       background: var(--bg-primary);
-      opacity: 0;
-      animation: fadeInUp 0.8s ease 0.7s forwards;
+      border-radius: 18px;
+      overflow: hidden;
     }
 
-    .booking-calendar iframe {
+    /* Calendar header strip */
+    .calendar-header {
+      background: var(--gradient-accent);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .calendar-header svg {
+      width: 20px;
+      height: 20px;
+      fill: white;
+    }
+
+    .calendar-header span {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: white;
+      letter-spacing: -0.01em;
+    }
+
+    .calendar-card-inner iframe {
       width: 100%;
       min-height: 700px;
       border: none;
       display: block;
     }
 
-    .booking-note {
+    /* Trust badges under calendar */
+    .trust-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 24px;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.6s forwards;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .trust-icon {
+      width: 18px;
+      height: 18px;
+      fill: var(--accent-mid);
+      flex-shrink: 0;
+    }
+
+    .trust-text {
+      font-size: 0.8125rem;
+      color: var(--text-tertiary);
+      font-weight: 500;
+    }
+
+    /* ====================== */
+    /* BOTTOM PHRASE SECTION   */
+    /* ====================== */
+    .phrase-section {
+      padding: 80px 24px 100px;
+      text-align: center;
+      background: var(--bg-secondary);
+    }
+
+    .phrase-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .phrase-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(1.875rem, 4vw, 2.75rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+    }
+
+    .phrase-desc {
+      font-size: 1.0625rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .phrase-note {
       margin-top: 20px;
       font-size: 0.8125rem;
       color: var(--text-tertiary);
-      opacity: 0;
-      animation: fadeInUp 0.8s ease 0.8s forwards;
     }
 
     /* Footer */
@@ -302,16 +412,18 @@
     /* Responsive */
     @media (max-width: 768px) {
       .hero { padding: 90px 20px 40px; }
-      .hero-title { font-size: 1.5rem; }
       .hero-subtitle { font-size: 0.9375rem; }
-      .booking-section { padding: 60px 20px 80px; }
-      .booking-calendar iframe { min-height: 600px; }
+      .booking-section { padding: 60px 20px 30px; }
+      .booking-heading { font-size: 1.375rem; }
+      .calendar-card-inner iframe { min-height: 600px; }
+      .trust-row { flex-direction: column; gap: 12px; }
+      .phrase-section { padding: 60px 20px 80px; }
       .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
+      .nav-cta { padding: 8px 14px; font-size: 0.75rem; }
     }
 
     @media (max-width: 480px) {
-      .hero-title { font-size: 1.375rem; }
-      .booking-calendar iframe { min-height: 550px; }
+      .calendar-card-inner iframe { min-height: 550px; }
     }
   </style>
 </head>
@@ -328,17 +440,10 @@
   </nav>
 
   <main>
+    <!-- 1. VSL VIDEO -->
     <section class="hero">
       <div class="container">
-        <div class="hero-badge">FOR STUDENTS AIMING FOR TOP 20 UNIVERSITIES</div>
-        <h1 class="hero-title">
-          <span class="line">How students score <span class="gradient-text">1500+</span> and earn</span>
-          <span class="line"><span class="gradient-text">massive scholarships</span> with the</span>
-          <span class="line">16-Week SAT Accelerator Program.</span>
-        </h1>
         <p class="hero-subtitle">Watch the video below to see exactly how we help students hit their target score and unlock T20 admissions.</p>
-
-        <!-- Wistia Video — auto-plays -->
         <div class="video-wrapper">
           <div class="video-container">
             <div class="video-aspect">
@@ -349,15 +454,49 @@
       </div>
     </section>
 
-    <!-- Embedded Booking Calendar -->
+    <!-- 2. PREMIUM BOOKING CALENDAR -->
     <section class="booking-section" id="book">
       <div class="booking-inner">
-        <h2 class="booking-title">Your path to 1500+ starts here</h2>
-        <p class="booking-desc">Book a complimentary SAT Performance Assessment. We'll analyze your current score, identify exactly what's holding you back, and show you the roadmap to T20 admissions.</p>
-        <div class="booking-calendar">
-          <iframe src="https://api.leadconnectorhq.com/widget/bookings/perform-sat-consultation" scrolling="no"></iframe>
+        <div class="booking-label">
+          <div class="booking-label-dot"></div>
+          <span class="booking-label-text">Limited Spots Available</span>
         </div>
-        <p class="booking-note">Limited availability · First come, first served</p>
+        <h2 class="booking-heading">Schedule Your Free SAT Assessment</h2>
+        <p class="booking-subheading">Pick a time that works for you. This 30-minute call is completely free.</p>
+
+        <div class="calendar-card">
+          <div class="calendar-card-inner">
+            <div class="calendar-header">
+              <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>
+              <span>Book Your Assessment</span>
+            </div>
+            <iframe src="https://api.leadconnectorhq.com/widget/bookings/perform-sat-consultation" scrolling="no"></iframe>
+          </div>
+        </div>
+
+        <div class="trust-row">
+          <div class="trust-item">
+            <svg class="trust-icon" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+            <span class="trust-text">100% Free</span>
+          </div>
+          <div class="trust-item">
+            <svg class="trust-icon" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+            <span class="trust-text">30 Minutes</span>
+          </div>
+          <div class="trust-item">
+            <svg class="trust-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            <span class="trust-text">No Obligation</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. BOTTOM PHRASE -->
+    <section class="phrase-section">
+      <div class="phrase-inner">
+        <h2 class="phrase-title">Your path to 1500+ starts here</h2>
+        <p class="phrase-desc">Book a complimentary SAT Performance Assessment. We'll analyze your current score, identify exactly what's holding you back, and show you the roadmap to T20 admissions.</p>
+        <p class="phrase-note">Limited availability · First come, first served</p>
       </div>
     </section>
   </main>
