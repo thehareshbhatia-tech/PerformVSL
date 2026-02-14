@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAT Accelerator | Score 1500+ in 16 Weeks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1063810436814222');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1063810436814222&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <style>
+    :root {
+      --bg-primary: #ffffff;
+      --bg-secondary: #fafafa;
+      --bg-tertiary: #f5f5f7;
+      --text-primary: #1d1d1f;
+      --text-secondary: #6e6e73;
+      --text-tertiary: #86868b;
+      --accent-start: #ff6b35;
+      --accent-mid: #f7931e;
+      --accent-end: #ff4444;
+      --gradient-accent: linear-gradient(135deg, var(--accent-start) 0%, var(--accent-mid) 50%, var(--accent-end) 100%);
+      --border-subtle: rgba(0, 0, 0, 0.08);
+      --border-medium: rgba(0, 0, 0, 0.12);
+      --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 0 24px;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-mid);
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .hero-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(1.75rem, 5vw, 3.25rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      color: var(--text-primary);
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.1s forwards;
+    }
+
+    .hero-title .line { display: block; }
+
+    .hero-title .gradient-text {
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin: 0 auto 40px;
+      letter-spacing: -0.01em;
+      line-height: 1.6;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.2s forwards;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Video Thumbnail */
+    .video-wrapper {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto 48px;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.3s forwards;
+    }
+
+    .video-container {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .video-aspect {
+      position: relative;
+      padding-bottom: 56.25%;
+    }
+
+    .video-thumbnail {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .video-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .video-overlay:hover { background: rgba(0, 0, 0, 0.2); }
+    .video-overlay:hover .play-btn { transform: scale(1.08); }
+
+    .play-btn {
+      width: 80px;
+      height: 80px;
+      background: var(--gradient-accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+      box-shadow: 0 12px 32px rgba(247, 147, 30, 0.35);
+    }
+
+    .play-btn svg {
+      width: 28px;
+      height: 28px;
+      fill: white;
+      margin-left: 3px;
+    }
+
+    .play-label {
+      margin-top: 18px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.9);
+      text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    }
+
+    /* Opt-in Form (inline below video) */
+    .optin-form {
+      max-width: 480px;
+      margin: 0 auto;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: var(--shadow-lg);
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.4s forwards;
+    }
+
+    .optin-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .optin-header .badge {
+      display: inline-block;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-mid);
+      margin-bottom: 10px;
+    }
+
+    .optin-header h2 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.375rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .optin-header p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .form-group { margin-bottom: 14px; }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 5px;
+    }
+
+    .form-group label .req { color: var(--accent-end); }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9375rem;
+      color: var(--text-primary);
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      outline: none;
+      transition: all 0.2s ease;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%2386868b' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--accent-mid);
+      box-shadow: 0 0 0 3px rgba(247, 147, 30, 0.1);
+    }
+
+    .form-group input::placeholder { color: var(--text-tertiary); }
+
+    .form-submit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 14px 24px;
+      background: var(--gradient-accent);
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 980px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 12px 32px -8px rgba(247, 147, 30, 0.4);
+      margin-top: 4px;
+    }
+
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px -8px rgba(247, 147, 30, 0.5);
+    }
+
+    .form-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .form-submit svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    .form-note {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+    }
+
+    .form-error {
+      color: var(--accent-end);
+      font-size: 0.75rem;
+      margin-top: 8px;
+      text-align: center;
+      display: none;
+    }
+
+    /* Stats */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border-subtle);
+      margin-top: 60px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.5s forwards;
+    }
+
+    .stat {
+      background: var(--bg-primary);
+      padding: 36px 24px;
+      text-align: center;
+      transition: background 0.3s ease;
+    }
+
+    .stat:hover { background: var(--bg-secondary); }
+
+    .stat-value {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 2.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 0.8125rem;
+      color: var(--text-tertiary);
+      font-weight: 500;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-primary);
+      border-top: 1px solid var(--border-subtle);
+      padding: 32px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-brand {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      font-size: 0.875rem;
+    }
+
+    .footer-links { display: flex; gap: 28px; }
+
+    .footer-links a {
+      color: var(--text-tertiary);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover { color: var(--text-primary); }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero { padding: 100px 20px 60px; min-height: auto; }
+      .hero-title { font-size: 1.5rem; }
+      .hero-subtitle { font-size: 0.9375rem; }
+      .stats { grid-template-columns: repeat(2, 1fr); margin-top: 40px; }
+      .stat { padding: 28px 16px; }
+      .stat-value { font-size: 1.875rem; }
+      .optin-form { padding: 24px 20px; }
+      .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title { font-size: 1.375rem; }
+      .stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <div class="logo">SAT Accelerator</div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-badge">FOR STUDENTS AIMING FOR TOP 20 UNIVERSITIES</div>
+        <h1 class="hero-title">
+          <span class="line">How students score <span class="gradient-text">1500+</span> and earn</span>
+          <span class="line"><span class="gradient-text">massive scholarships</span> with the</span>
+          <span class="line">16-Week SAT Accelerator Program.</span>
+        </h1>
+        <p class="hero-subtitle">Watch the free video to see exactly how we help students hit their target score and unlock T20 admissions.</p>
+
+        <!-- Video Thumbnail (not playable — just visual hook) -->
+        <div class="video-wrapper">
+          <div class="video-container">
+            <div class="video-aspect">
+              <div class="video-thumbnail" id="videoThumb"></div>
+              <div class="video-overlay" id="videoOverlay">
+                <div class="play-btn">
+                  <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="play-label">Watch the video</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Opt-in Form -->
+        <div class="optin-form" id="optinForm">
+          <div class="optin-header">
+            <div class="badge">Free Access</div>
+            <h2>Enter your details to watch</h2>
+            <p>Get instant access to the full video.</p>
+          </div>
+
+          <div class="form-group">
+            <label>Your Name <span class="req">*</span></label>
+            <input type="text" id="parentName" placeholder="Full name">
+          </div>
+
+          <div class="form-group">
+            <label>Email <span class="req">*</span></label>
+            <input type="email" id="parentEmail" placeholder="you@email.com">
+          </div>
+
+          <div class="form-group">
+            <label>Phone Number <span class="req">*</span></label>
+            <input type="tel" id="parentPhone" placeholder="(555) 123-4567">
+          </div>
+
+          <div class="form-group">
+            <label>Child's Grade Level <span class="req">*</span></label>
+            <select id="gradeLevel">
+              <option value="" disabled selected>Select grade</option>
+              <option value="8th">8th Grade</option>
+              <option value="9th">9th Grade (Freshman)</option>
+              <option value="10th">10th Grade (Sophomore)</option>
+              <option value="11th">11th Grade (Junior)</option>
+              <option value="12th">12th Grade (Senior)</option>
+            </select>
+          </div>
+
+          <button class="form-submit" id="formSubmit">
+            Watch the Free Video
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+          <p class="form-note">Your information is kept private and never shared.</p>
+          <p class="form-error" id="formError">Please fill in all required fields.</p>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-value">1600</div>
+            <div class="stat-label">Perfect SAT Score</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">200+</div>
+            <div class="stat-label">Avg. Point Increase</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">$300K+</div>
+            <div class="stat-label">In Scholarships</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">16</div>
+            <div class="stat-label">Week Program</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">SAT Accelerator · Long Island, NY</div>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ================================================
+       ⚠️  CONFIG — Replace before going live
+       ================================================ */
+    const GHL_WEBHOOK_URL = 'YOUR_GHL_WEBHOOK_URL';
+
+
+    /* ---- Load Wistia thumbnail ---- */
+    fetch('https://fast.wistia.com/oembed?url=https://haresh.wistia.com/medias/jfu4kwqcye&format=json')
+      .then(r => r.json())
+      .then(data => {
+        if (data.thumbnail_url) {
+          const hiRes = data.thumbnail_url.replace(/\?.*$/, '') + '?image_crop_resized=1920x1080';
+          document.getElementById('videoThumb').style.backgroundImage = 'url(' + hiRes + ')';
+        }
+      })
+      .catch(() => {});
+
+
+    /* ---- Clicking thumbnail scrolls to form ---- */
+    document.getElementById('videoOverlay').addEventListener('click', () => {
+      document.getElementById('optinForm').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      document.getElementById('parentName').focus({ preventScroll: true });
+    });
+
+
+    /* ---- Form submission ---- */
+    document.getElementById('formSubmit').addEventListener('click', function() {
+      const val = id => (document.getElementById(id).value || '').trim();
+      const errorEl = document.getElementById('formError');
+
+      if (!val('parentName') || !val('parentEmail') || !val('parentPhone') || !val('gradeLevel')) {
+        errorEl.textContent = 'Please fill in all required fields.';
+        errorEl.style.display = 'block';
+        return;
+      }
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val('parentEmail'))) {
+        errorEl.textContent = 'Please enter a valid email address.';
+        errorEl.style.display = 'block';
+        return;
+      }
+
+      errorEl.style.display = 'none';
+      this.disabled = true;
+      this.innerHTML = 'Loading...';
+
+      const payload = {
+        name: val('parentName'),
+        email: val('parentEmail'),
+        phone: val('parentPhone'),
+        grade_level: val('gradeLevel'),
+        source: 'VSL Opt-in Page',
+        submitted_at: new Date().toISOString()
+      };
+
+      // Send to GHL
+      if (GHL_WEBHOOK_URL && GHL_WEBHOOK_URL !== 'YOUR_GHL_WEBHOOK_URL') {
+        fetch(GHL_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }).catch(err => console.warn('Webhook error:', err));
+      } else {
+        console.log('📋 Form data (webhook not configured yet):', payload);
+      }
+
+      // Redirect to VSL page
+      window.location.href = 'vsl.html';
+    });
+  </script>
+</body>
+</html>
