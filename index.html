@@ -159,7 +159,7 @@
     .video-wrapper {
       width: 100%;
       max-width: 900px;
-      margin: 0 auto 48px;
+      margin: 0 auto;
       opacity: 0;
       animation: fadeInUp 0.8s ease 0.3s forwards;
     }
@@ -227,48 +227,166 @@
       text-shadow: 0 1px 4px rgba(0,0,0,0.3);
     }
 
-    /* Opt-in Form (inline below video) */
-    .optin-form {
-      max-width: 480px;
-      margin: 0 auto;
-      background: var(--bg-primary);
+    /* Stats */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border-subtle);
+      margin-top: 60px;
+      border-radius: 12px;
+      overflow: hidden;
       border: 1px solid var(--border-subtle);
-      border-radius: 20px;
-      padding: 32px;
-      box-shadow: var(--shadow-lg);
       opacity: 0;
-      animation: fadeInUp 0.8s ease 0.4s forwards;
+      animation: fadeInUp 0.8s ease 0.5s forwards;
     }
 
-    .optin-header {
+    .stat {
+      background: var(--bg-primary);
+      padding: 36px 24px;
       text-align: center;
-      margin-bottom: 24px;
+      transition: background 0.3s ease;
     }
 
-    .optin-header .badge {
+    .stat:hover { background: var(--bg-secondary); }
+
+    .stat-value {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 2.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 0.8125rem;
+      color: var(--text-tertiary);
+      font-weight: 500;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-primary);
+      border-top: 1px solid var(--border-subtle);
+      padding: 32px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-brand {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      font-size: 0.875rem;
+    }
+
+    .footer-links { display: flex; gap: 28px; }
+
+    .footer-links a {
+      color: var(--text-tertiary);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover { color: var(--text-primary); }
+
+    /* ===================== */
+    /* LEAD CAPTURE MODAL    */
+    /* ===================== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal {
+      background: var(--bg-primary);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 480px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.2);
+      position: relative;
+      animation: fadeInUp 0.35s ease;
+    }
+
+    .modal-header {
+      padding: 32px 32px 0;
+      text-align: center;
+    }
+
+    .modal-header .badge {
       display: inline-block;
       font-size: 0.6875rem;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--accent-mid);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
-    .optin-header h2 {
+    .modal-header h2 {
       font-family: 'DM Sans', sans-serif;
-      font-size: 1.375rem;
+      font-size: 1.5rem;
       font-weight: 700;
       letter-spacing: -0.02em;
       color: var(--text-primary);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
-    .optin-header p {
+    .modal-header p {
       font-size: 0.875rem;
       color: var(--text-secondary);
       line-height: 1.5;
     }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: var(--bg-tertiary);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-tertiary);
+      font-size: 1.25rem;
+      line-height: 1;
+      transition: all 0.2s ease;
+    }
+
+    .modal-close:hover {
+      background: var(--border-medium);
+      color: var(--text-primary);
+    }
+
+    .modal-body { padding: 24px 32px 32px; }
 
     .form-group { margin-bottom: 14px; }
 
@@ -365,81 +483,6 @@
       display: none;
     }
 
-    /* Stats */
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--border-subtle);
-      margin-top: 60px;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--border-subtle);
-      opacity: 0;
-      animation: fadeInUp 0.8s ease 0.5s forwards;
-    }
-
-    .stat {
-      background: var(--bg-primary);
-      padding: 36px 24px;
-      text-align: center;
-      transition: background 0.3s ease;
-    }
-
-    .stat:hover { background: var(--bg-secondary); }
-
-    .stat-value {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 2.25rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      background: var(--gradient-accent);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-
-    .stat-label {
-      font-size: 0.8125rem;
-      color: var(--text-tertiary);
-      font-weight: 500;
-    }
-
-    /* Footer */
-    footer {
-      background: var(--bg-primary);
-      border-top: 1px solid var(--border-subtle);
-      padding: 32px 24px;
-    }
-
-    .footer-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .footer-brand {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 500;
-      color: var(--text-tertiary);
-      font-size: 0.875rem;
-    }
-
-    .footer-links { display: flex; gap: 28px; }
-
-    .footer-links a {
-      color: var(--text-tertiary);
-      text-decoration: none;
-      font-size: 0.8125rem;
-      transition: color 0.2s ease;
-    }
-
-    .footer-links a:hover { color: var(--text-primary); }
-
     /* Responsive */
     @media (max-width: 768px) {
       .hero { padding: 100px 20px 60px; min-height: auto; }
@@ -448,8 +491,10 @@
       .stats { grid-template-columns: repeat(2, 1fr); margin-top: 40px; }
       .stat { padding: 28px 16px; }
       .stat-value { font-size: 1.875rem; }
-      .optin-form { padding: 24px 20px; }
       .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
+      .modal-header { padding: 24px 20px 0; }
+      .modal-body { padding: 20px 20px 24px; }
+      .modal-header h2 { font-size: 1.25rem; }
     }
 
     @media (max-width: 480px) {
@@ -477,7 +522,7 @@
         </h1>
         <p class="hero-subtitle">Watch the free video to see exactly how we help students hit their target score and unlock T20 admissions.</p>
 
-        <!-- Video Thumbnail (not playable — just visual hook) -->
+        <!-- Video Thumbnail — clicking opens the opt-in modal -->
         <div class="video-wrapper">
           <div class="video-container">
             <div class="video-aspect">
@@ -490,49 +535,6 @@
               </div>
             </div>
           </div>
-        </div>
-
-        <!-- Opt-in Form -->
-        <div class="optin-form" id="optinForm">
-          <div class="optin-header">
-            <div class="badge">Free Access</div>
-            <h2>Enter your details to watch</h2>
-            <p>Get instant access to the full video.</p>
-          </div>
-
-          <div class="form-group">
-            <label>Your Name <span class="req">*</span></label>
-            <input type="text" id="parentName" placeholder="Full name">
-          </div>
-
-          <div class="form-group">
-            <label>Email <span class="req">*</span></label>
-            <input type="email" id="parentEmail" placeholder="you@email.com">
-          </div>
-
-          <div class="form-group">
-            <label>Phone Number <span class="req">*</span></label>
-            <input type="tel" id="parentPhone" placeholder="(555) 123-4567">
-          </div>
-
-          <div class="form-group">
-            <label>Child's Grade Level <span class="req">*</span></label>
-            <select id="gradeLevel">
-              <option value="" disabled selected>Select grade</option>
-              <option value="8th">8th Grade</option>
-              <option value="9th">9th Grade (Freshman)</option>
-              <option value="10th">10th Grade (Sophomore)</option>
-              <option value="11th">11th Grade (Junior)</option>
-              <option value="12th">12th Grade (Senior)</option>
-            </select>
-          </div>
-
-          <button class="form-submit" id="formSubmit">
-            Watch the Free Video
-            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          </button>
-          <p class="form-note">Your information is kept private and never shared.</p>
-          <p class="form-error" id="formError">Please fill in all required fields.</p>
         </div>
 
         <div class="stats">
@@ -568,12 +570,54 @@
     </div>
   </footer>
 
+  <!-- LEAD CAPTURE MODAL — appears when user clicks video -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <div class="modal-header">
+        <div class="badge">Free Access</div>
+        <h2>Watch how students hit 1500+</h2>
+        <p>Enter your details below to unlock the full video.</p>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Your Name <span class="req">*</span></label>
+          <input type="text" id="parentName" placeholder="Full name">
+        </div>
+        <div class="form-group">
+          <label>Email <span class="req">*</span></label>
+          <input type="email" id="parentEmail" placeholder="you@email.com">
+        </div>
+        <div class="form-group">
+          <label>Phone Number <span class="req">*</span></label>
+          <input type="tel" id="parentPhone" placeholder="(555) 123-4567">
+        </div>
+        <div class="form-group">
+          <label>Child's Grade Level <span class="req">*</span></label>
+          <select id="gradeLevel">
+            <option value="" disabled selected>Select grade</option>
+            <option value="8th">8th Grade</option>
+            <option value="9th">9th Grade (Freshman)</option>
+            <option value="10th">10th Grade (Sophomore)</option>
+            <option value="11th">11th Grade (Junior)</option>
+            <option value="12th">12th Grade (Senior)</option>
+          </select>
+        </div>
+        <button class="form-submit" id="formSubmit">
+          Watch the Free Video
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <p class="form-note">Your information is kept private and never shared.</p>
+        <p class="form-error" id="formError">Please fill in all required fields.</p>
+      </div>
+    </div>
+  </div>
+
   <script>
     /* ================================================
        ⚠️  CONFIG — Replace before going live
        ================================================ */
     const GHL_WEBHOOK_URL = 'YOUR_GHL_WEBHOOK_URL';
-
 
     /* ---- Load Wistia thumbnail ---- */
     fetch('https://fast.wistia.com/oembed?url=https://haresh.wistia.com/medias/jfu4kwqcye&format=json')
@@ -586,15 +630,24 @@
       })
       .catch(() => {});
 
-
-    /* ---- Clicking thumbnail scrolls to form ---- */
+    /* ---- Click video → open modal ---- */
     document.getElementById('videoOverlay').addEventListener('click', () => {
-      document.getElementById('optinForm').scrollIntoView({ behavior: 'smooth', block: 'center' });
-      document.getElementById('parentName').focus({ preventScroll: true });
+      document.getElementById('modalOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
     });
 
+    /* ---- Close modal ---- */
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    document.getElementById('modalOverlay').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('modalOverlay')) closeModal();
+    });
 
-    /* ---- Form submission ---- */
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    /* ---- Form submission → redirect to vsl.html ---- */
     document.getElementById('formSubmit').addEventListener('click', function() {
       const val = id => (document.getElementById(id).value || '').trim();
       const errorEl = document.getElementById('formError');
