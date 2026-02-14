@@ -619,16 +619,8 @@
        ================================================ */
     const GHL_WEBHOOK_URL = 'YOUR_GHL_WEBHOOK_URL';
 
-    /* ---- Load Wistia thumbnail ---- */
-    fetch('https://fast.wistia.com/oembed?url=https://haresh.wistia.com/medias/jfu4kwqcye&format=json')
-      .then(r => r.json())
-      .then(data => {
-        if (data.thumbnail_url) {
-          const hiRes = data.thumbnail_url.replace(/\?.*$/, '') + '?image_crop_resized=1920x1080';
-          document.getElementById('videoThumb').style.backgroundImage = 'url(' + hiRes + ')';
-        }
-      })
-      .catch(() => {});
+    /* ---- Load custom thumbnail ---- */
+    document.getElementById('videoThumb').style.backgroundImage = 'url(New_Thumbnail-thumbnail.jpg)';
 
     /* ---- Click video → open modal ---- */
     document.getElementById('videoOverlay').addEventListener('click', () => {
