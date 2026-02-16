@@ -580,45 +580,29 @@
         <p>Enter your details below to unlock the full video.</p>
       </div>
       <div class="modal-body">
-        <div class="form-group">
-          <label>Your Name <span class="req">*</span></label>
-          <input type="text" id="parentName" placeholder="Full name">
-        </div>
-        <div class="form-group">
-          <label>Email <span class="req">*</span></label>
-          <input type="email" id="parentEmail" placeholder="you@email.com">
-        </div>
-        <div class="form-group">
-          <label>Phone Number <span class="req">*</span></label>
-          <input type="tel" id="parentPhone" placeholder="(555) 123-4567">
-        </div>
-        <div class="form-group">
-          <label>Child's Grade Level <span class="req">*</span></label>
-          <select id="gradeLevel">
-            <option value="" disabled selected>Select grade</option>
-            <option value="8th">8th Grade</option>
-            <option value="9th">9th Grade (Freshman)</option>
-            <option value="10th">10th Grade (Sophomore)</option>
-            <option value="11th">11th Grade (Junior)</option>
-            <option value="12th">12th Grade (Senior)</option>
-          </select>
-        </div>
-        <button class="form-submit" id="formSubmit">
-          Watch the Free Video
-          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        </button>
-        <p class="form-note">Your information is kept private and never shared.</p>
-        <p class="form-error" id="formError">Please fill in all required fields.</p>
+        <iframe
+          src="https://api.leadconnectorhq.com/widget/form/ohFpLQJHzfNqx0GKudFQ"
+          style="width:100%;height:572px;border:none;border-radius:3px"
+          id="inline-ohFpLQJHzfNqx0GKudFQ"
+          data-layout="{'id':'INLINE'}"
+          data-trigger-type="alwaysShow"
+          data-trigger-value=""
+          data-activation-type="alwaysActivated"
+          data-activation-value=""
+          data-deactivation-type="neverDeactivate"
+          data-deactivation-value=""
+          data-form-name="Opt-In Form"
+          data-height="572"
+          data-layout-iframe-id="inline-ohFpLQJHzfNqx0GKudFQ"
+          data-form-id="ohFpLQJHzfNqx0GKudFQ"
+          title="Opt-In Form"
+        ></iframe>
       </div>
     </div>
   </div>
 
+  <script src="https://link.msgsndr.com/js/form_embed.js"></script>
   <script>
-    /* ================================================
-       ⚠️  CONFIG — Replace before going live
-       ================================================ */
-    const GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/BhlKsKvPvne7FRm5vT8R/webhook-trigger/4a82b737-e180-4793-91e8-d337e1468ae1';
-
     /* ---- Load custom thumbnail ---- */
     document.getElementById('videoThumb').style.backgroundImage = 'url(New_Thumbnail-thumbnail.jpg)';
 
@@ -638,53 +622,6 @@
       document.getElementById('modalOverlay').classList.remove('active');
       document.body.style.overflow = '';
     }
-
-    /* ---- Form submission → redirect to vsl.html ---- */
-    document.getElementById('formSubmit').addEventListener('click', function() {
-      const val = id => (document.getElementById(id).value || '').trim();
-      const errorEl = document.getElementById('formError');
-
-      if (!val('parentName') || !val('parentEmail') || !val('parentPhone') || !val('gradeLevel')) {
-        errorEl.textContent = 'Please fill in all required fields.';
-        errorEl.style.display = 'block';
-        return;
-      }
-
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val('parentEmail'))) {
-        errorEl.textContent = 'Please enter a valid email address.';
-        errorEl.style.display = 'block';
-        return;
-      }
-
-      errorEl.style.display = 'none';
-      this.disabled = true;
-      this.innerHTML = 'Loading...';
-
-      const payload = {
-        name: val('parentName'),
-        email: val('parentEmail'),
-        phone: val('parentPhone'),
-        grade_level: val('gradeLevel'),
-        source: 'VSL Opt-in Page',
-        submitted_at: new Date().toISOString()
-      };
-
-      // Send to GHL then redirect
-      if (GHL_WEBHOOK_URL && GHL_WEBHOOK_URL !== 'YOUR_GHL_WEBHOOK_URL') {
-        const formData = new URLSearchParams(payload);
-        fetch(GHL_WEBHOOK_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: formData.toString()
-        })
-        .then(() => { window.location.href = 'vsl.html'; })
-        .catch(() => { window.location.href = 'vsl.html'; });
-      } else {
-        console.log('📋 Form data (webhook not configured yet):', payload);
-        window.location.href = 'vsl.html';
-      }
-    });
   </script>
 </body>
 </html>
